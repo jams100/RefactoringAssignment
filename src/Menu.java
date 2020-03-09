@@ -67,7 +67,7 @@ public class Menu extends JFrame {
 		content.add(continuePanel);
 
 		continueButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				String user = userType.getSelection().getActionCommand();
 				if(user.equalsIgnoreCase("New Customer")){
 					menTypes.createNewCustomer(f, customerList);
@@ -155,9 +155,9 @@ public class Menu extends JFrame {
 		content.add(returnPanel);
 
 		bankChargesButton.addActionListener(new ActionListener(  ) {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				boolean loop = true;
-				boolean found = false;
+				boolean isfound = false;
 
 				if(customerList.isEmpty())
 				{
@@ -175,13 +175,13 @@ public class Menu extends JFrame {
 
 							if(aCustomer.getCustomerID().equals(customerID))
 							{
-								found = true;
+								isfound = true;
 								customer = aCustomer; 
 								loop = false;
 							}					    	
 						}
 
-						if(found == false)
+						if(isfound == false)
 						{
 							int reply  = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 							if (reply == JOptionPane.YES_OPTION) {
@@ -243,7 +243,7 @@ public class Menu extends JFrame {
 								}
 
 								continueButton.addActionListener(new ActionListener(  ) {
-									public void actionPerformed(ActionEvent ae) {
+									public void actionPerformed(ActionEvent actioneven) {
 										String euro = "\u20ac";
 
 										if(acc instanceof CustomerDepositAccount)
@@ -264,7 +264,7 @@ public class Menu extends JFrame {
 									}		
 								});
 								returnButton.addActionListener(new ActionListener(  ) {
-									public void actionPerformed(ActionEvent ae) {
+									public void actionPerformed(ActionEvent actioneven) {
 										f.dispose();		
 										menuStart();				
 									}
@@ -277,9 +277,9 @@ public class Menu extends JFrame {
 		});
 
 		interestButton.addActionListener(new ActionListener(  ) {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				boolean loop = true;
-				boolean found = false;
+				boolean isfound = false;
 
 				if(customerList.isEmpty())
 				{
@@ -296,13 +296,13 @@ public class Menu extends JFrame {
 						{
 							if(aCustomer.getCustomerID().equals(customerID))
 							{
-								found = true;
+								isfound = true;
 								customer = aCustomer; 
 								loop = false;
 							}					    	
 						}
 
-						if(found == false)
+						if(isfound == false)
 						{
 							int reply  = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 							if (reply == JOptionPane.YES_OPTION) {
@@ -366,7 +366,7 @@ public class Menu extends JFrame {
 								}
 
 								continueButton.addActionListener(new ActionListener(  ) {
-									public void actionPerformed(ActionEvent ae) {
+									public void actionPerformed(ActionEvent actioneven) {
 										String euro = "\u20ac";
 										double interest = 0;
 										boolean loop = true;
@@ -392,7 +392,7 @@ public class Menu extends JFrame {
 								});
 
 								returnButton.addActionListener(new ActionListener(  ) {
-									public void actionPerformed(ActionEvent ae) {
+									public void actionPerformed(ActionEvent actioneven) {
 										f.dispose();		
 										menuStart();				
 									}
@@ -405,9 +405,9 @@ public class Menu extends JFrame {
 		});
 
 		editCustomerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				boolean loop = true;
-				boolean found = false;
+				boolean isfound = false;
 
 				if (customerList.isEmpty()) {
 					JOptionPane.showMessageDialog(f, "There are no customers yet!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
@@ -419,12 +419,12 @@ public class Menu extends JFrame {
 
 						for (Customer aCustomer : customerList) {
 							if (aCustomer.getCustomerID().equals(customerID)) {
-								found = true;
+								isfound = true;
 								customer = aCustomer;
 							}
 						}
 
-						if (found == false) {
+						if (isfound == false) {
 							int reply = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 							if (reply == JOptionPane.YES_OPTION) {
 								loop = true;
@@ -501,7 +501,7 @@ public class Menu extends JFrame {
 					f.setResizable(false);
 
 					saveButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							customer.setFirstName(firstNameTextField.getText());
 							customer.setSurname(surnameTextField.getText());
 							customer.setPPS(pPSTextField.getText());
@@ -514,7 +514,7 @@ public class Menu extends JFrame {
 					});
 
 					cancelButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							f.dispose();
 							admin();
 						}
@@ -524,7 +524,7 @@ public class Menu extends JFrame {
 		});
 
 		summaryButton.addActionListener(new ActionListener(  ) {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				f.dispose();
 				f = new JFrame("Summary of Transactions");
 				f.setSize(400, 700);
@@ -571,7 +571,7 @@ public class Menu extends JFrame {
 				content.add(textPanel);
 
 				returnButton.addActionListener(new ActionListener( ) {
-					public void actionPerformed(ActionEvent ae) {
+					public void actionPerformed(ActionEvent actioneven) {
 						f.dispose();			
 						admin();				
 					}		
@@ -580,7 +580,7 @@ public class Menu extends JFrame {
 		});
 
 		navigateButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				f.dispose();
 
 				if (customerList.isEmpty()) {
@@ -654,7 +654,7 @@ public class Menu extends JFrame {
 					content.add(buttonPanel, BorderLayout.CENTER);
 					content.add(cancelPanel, BorderLayout.AFTER_LAST_LINE);
 					first.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							position = 0;
 							firstNameTextField.setText(customerList.get(0).getFirstName());
 							surnameTextField.setText(customerList.get(0).getSurname());
@@ -666,7 +666,7 @@ public class Menu extends JFrame {
 					});
 
 					previous.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							if (position < 1) {
 							} else {
 								position = position - 1;
@@ -681,7 +681,7 @@ public class Menu extends JFrame {
 					});
 
 					next.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							if (position == customerList.size() - 1) {
 							} else {
 								position = position + 1;
@@ -696,7 +696,7 @@ public class Menu extends JFrame {
 					});
 
 					last.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							position = customerList.size() - 1;
 							firstNameTextField.setText(customerList.get(position).getFirstName());
 							surnameTextField.setText(customerList.get(position).getSurname());
@@ -708,7 +708,7 @@ public class Menu extends JFrame {
 					});
 
 					cancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							dispose();
 							admin();
 						}
@@ -721,33 +721,33 @@ public class Menu extends JFrame {
 		});
 
 		deleteCustomer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				c.deleteCustomer(f, customerList);
 			}
 		});
 
 		accountButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				c.viewAccount(f, customerList);
 			}
 		});
 
 		deleteAccount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				boolean found = true, loop = true;
+			public void actionPerformed(ActionEvent actioneven) {
+				boolean isfound = true, loop = true;
 
 				{
 					Object customerID = JOptionPane.showInputDialog(f, "Customer ID of Customer from which you wish to delete an account");
 
 					for (Customer aCustomer : customerList) {
 						if (aCustomer.getCustomerID().equals(customerID)) {
-							found = true;
+							isfound = true;
 							customer = aCustomer;
 							loop = false;
 						}
 					}
 
-					if (found == false) {
+					if (isfound == false) {
 						int reply = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 						if (reply == JOptionPane.YES_OPTION) {
 							loop = true;
@@ -761,14 +761,14 @@ public class Menu extends JFrame {
 			}
 		});
 		returnButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				f.dispose();
 				menuStart();
 			}
 		});
 
 		returnButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent actioneven) {
 				f.dispose();
 				menuStart();
 			}
@@ -822,14 +822,14 @@ public class Menu extends JFrame {
 			content.add(buttonPanel);
 
 			returnButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent ae) {
+				public void actionPerformed(ActionEvent actioneven) {
 					f.dispose();
 					menuStart();
 				}
 			});
 
 			continueButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent ae) {
+				public void actionPerformed(ActionEvent actioneven) {
 					f.dispose();
 					f = new JFrame("Customer Menu");
 					f.setSize(400, 300);
@@ -872,7 +872,7 @@ public class Menu extends JFrame {
 					content.add(returnPanel);
 
 					statementButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							f.dispose();
 							f = new JFrame("Customer Menu");
 							f.setSize(400, 600);
@@ -912,7 +912,7 @@ public class Menu extends JFrame {
 							content.add(textPanel);
 
 							returnButton.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent ae) {
+								public void actionPerformed(ActionEvent actioneven) {
 									f.dispose();
 									customer(c);
 								}
@@ -921,7 +921,7 @@ public class Menu extends JFrame {
 					});
 
 					lodgementButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							boolean loop = true;
 							boolean on = true;
 							double balance = 0;
@@ -980,7 +980,7 @@ public class Menu extends JFrame {
 					});
 
 					withdrawButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							boolean loop = true;
 							boolean on = true;
 							double withdraw = 0;
@@ -1046,7 +1046,7 @@ public class Menu extends JFrame {
 					});
 
 					returnButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent ae) {
+						public void actionPerformed(ActionEvent actioneven) {
 							f.dispose();
 							menuStart();
 						}
