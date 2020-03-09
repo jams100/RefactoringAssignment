@@ -29,6 +29,9 @@ public class Menu extends JFrame {
 		driver.menuStart();
 	}
 
+	//*************************************************************************************************************************
+	//*********************************************START MENU FUNCTION*********************************************************
+	//*************************************************************************************************************************
 	public void menuStart() {
 		/*The menuStart method asks the user if they are a new customer, an existing customer or an admin. It will then start the create customer process
 		  if they are a new customer, or will ask them to log in if they are an existing customer or admin.*/

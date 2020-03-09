@@ -58,7 +58,7 @@ public class MenuTypes {
                         boolean loop = true;
                         while (loop) {
                             password[0] = JOptionPane.showInputDialog(f, "Enter 7 character Password;");
-                            if (password[0].length() != 7)//Making sure password is 7 characters
+                            if (password[0].length() != 7)
                             {
                                 JOptionPane.showMessageDialog(null, null, "Password must be 7 charatcers long", JOptionPane.OK_OPTION);
                             } else {
@@ -90,6 +90,10 @@ public class MenuTypes {
         content.add(panel2, BorderLayout.SOUTH);
     }
 
+    
+	//*************************************************************************************************************************
+	//*********************************************SELECT EXISTING CUSTOMER*************************************************************
+	//*************************************************************************************************************************
     public void selectCustomer(JFrame f,  ArrayList<Customer> customerList) {
         boolean loop = true, loop2 = true;
         boolean cont = false;
@@ -144,6 +148,9 @@ public class MenuTypes {
         }
     }
     
+	//*************************************************************************************************************************
+	//*********************************************SELECT ADMIN******************************************************************
+	//*************************************************************************************************************************
     public void selectAdmin(JFrame f, JFrame f1) {
         boolean loop = true, loop2 = true;
         boolean cont = false;
