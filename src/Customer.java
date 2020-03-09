@@ -12,16 +12,6 @@ public class Customer {
 
 	ArrayList<CustomerAccount> accounts = new ArrayList<CustomerAccount> ();
 
-	public Customer(){
-		this.PPS = "";
-		this.surname = "";
-		this.firstName = "";
-		this.DOB = "";
-		this.customerID = "";
-		this.password = "";
-		this.accounts = null;
-	}
-
 	public Customer(String PPS, String surname, String firstName, String DOB, String customerID, String password, ArrayList<CustomerAccount> accounts){
 		this.PPS = PPS;
 		this.surname = surname;
