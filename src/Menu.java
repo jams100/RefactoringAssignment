@@ -787,7 +787,7 @@ public class Menu extends JFrame {
 		});
 		f.setVisible(true);
 
-		if (c.getAccounts().size() == 0) {
+		if (c.getAccounts() == null) {
 			JOptionPane.showMessageDialog(f, "This customer does not have any accounts yet. \n An admin must create an account for this customer \n for them to be able to use customer functionality. ", "Oops!", JOptionPane.INFORMATION_MESSAGE);
 			f.dispose();
 			menuStart();
