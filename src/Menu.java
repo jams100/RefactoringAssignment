@@ -19,7 +19,7 @@ public class Menu extends JFrame {
 	Container content;
 	Customer c;
 
-	MenuTypes methods = new MenuTypes();
+	MenuTypes menTypes = new MenuTypes();
 	JPanel panel2;
 	JButton add;
 	String PPS, firstName, surname, DOB, CustomerID;
