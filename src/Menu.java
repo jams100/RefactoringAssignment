@@ -49,7 +49,9 @@ public class Menu extends JFrame{
 		f.setSize(400, 300);
 		f.setLocation(200, 200);
 		f.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) { System.exit(0); }
+			public void windowClosing(WindowEvent we) { 
+				System.exit(0); 
+				}
 		});
 
 		JPanel userTypePanel = new JPanel();
@@ -88,7 +90,9 @@ public class Menu extends JFrame{
 					f1.setSize(400, 300);
 					f1.setLocation(200, 200);
 					f1.addWindowListener(new WindowAdapter() {
-						public void windowClosing(WindowEvent we) { System.exit(0); }
+						public void windowClosing(WindowEvent we) { 
+							System.exit(0); 
+							}
 					});
 					Container content = f1.getContentPane();
 					content.setLayout(new BorderLayout());
