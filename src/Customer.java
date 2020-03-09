@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.lang.reflect.Array;
 
 public class Customer {
 
@@ -11,6 +17,16 @@ public class Customer {
 	String password = "";
 
 	ArrayList<CustomerAccount> accounts = new ArrayList<CustomerAccount> ();
+
+	public Customer(){
+		this.PPS = "";
+		this.surname = "";
+		this.firstName = "";
+		this.DOB = "";
+		this.customerID = "";
+		this.password = "";
+		this.accounts = null;
+	}
 
 	public Customer(String PPS, String surname, String firstName, String DOB, String customerID, String password, ArrayList<CustomerAccount> accounts){
 		this.PPS = PPS;
@@ -232,7 +248,177 @@ public class Customer {
             }
         }
     }
+	
+	public void EditCust(JFrame f, ArrayList<Customer> customerList) {
+        boolean loop = true;
+        Menu m = new Menu();
+        boolean found = false;
+        Customer customer = new Customer();
 
+        if (customerList.isEmpty()) {
+            JOptionPane.showMessageDialog(f, "There are no customers yet!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            f.dispose();
+            m.admin();
+
+        } else {
+
+            while (loop) {
+                Object customerID = JOptionPane.showInputDialog(f, "Enter Customer ID:");
+                for (Customer aCustomer : customerList) {
+                    if (aCustomer.getCustomerID().equals(customerID)) {
+                        found = true;
+                        customer = aCustomer;
+                    }
+                }
+
+                if (found == false) {
+                    int reply = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) {
+                        loop = true;
+                    } else if (reply == JOptionPane.NO_OPTION) {
+                        f.dispose();
+                        loop = false;
+                        m.admin();
+                    }
+                } else {
+                    loop = false;
+                }
+
+            }
+
+            f.dispose();
+            f.dispose();
+            f = new JFrame("Administrator Menu");
+            f.setSize(400, 300);
+            f.setLocation(200, 200);
+            f.addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent we) {
+                    System.exit(0);
+                }
+            });
+
+            JLabel firstNameLabel = new JLabel("First Name:", SwingConstants.LEFT);
+            JLabel surnameLabel = new JLabel("Surname:", SwingConstants.LEFT);
+            JLabel pPPSLabel = new JLabel("PPS Number:", SwingConstants.LEFT);
+            JLabel dOBLabel = new JLabel("Date of birth", SwingConstants.LEFT);
+            JLabel  customerIDLabel = new JLabel("CustomerID:", SwingConstants.LEFT);
+            JLabel passwordLabel = new JLabel("Password:", SwingConstants.LEFT);
+            JTextField firstNameTextField = new JTextField(20);
+            JTextField surnameTextField = new JTextField(20);
+            JTextField pPSTextField = new JTextField(20);
+            JTextField dOBTextField = new JTextField(20);
+            JTextField customerIDTextField = new JTextField(20);
+            JTextField passwordTextField = new JTextField(20);
+
+            JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+            JPanel cancelPanel = new JPanel();
+
+            textPanel.add(firstNameLabel);
+            textPanel.add(firstNameTextField);
+            textPanel.add(surnameLabel);
+            textPanel.add(surnameTextField);
+            textPanel.add(pPPSLabel);
+            textPanel.add(pPSTextField);
+            textPanel.add(dOBLabel);
+            textPanel.add(dOBTextField);
+            textPanel.add(customerIDLabel);
+            textPanel.add(customerIDTextField);
+            textPanel.add(passwordLabel);
+            textPanel.add(passwordTextField);
+
+            firstNameTextField.setText(customer.getFirstName());
+            surnameTextField.setText(customer.getSurname());
+            pPSTextField.setText(customer.getPPS());
+            dOBTextField.setText(customer.getDOB());
+            customerIDTextField.setText(customer.getCustomerID());
+            passwordTextField.setText(customer.getPassword());
+
+            JButton saveButton = new JButton("Save");
+            JButton cancelButton = new JButton("Exit");
+
+            cancelPanel.add(cancelButton, BorderLayout.SOUTH);
+            cancelPanel.add(saveButton, BorderLayout.SOUTH);
+            Container content = f.getContentPane();
+            content.setLayout(new GridLayout(2, 1));
+            content.add(textPanel, BorderLayout.NORTH);
+            content.add(cancelPanel, BorderLayout.SOUTH);
+
+            f.setContentPane(content);
+            f.setSize(340, 350);
+            f.setLocation(200, 200);
+            f.setVisible(true);
+            f.setResizable(false);
+
+            Customer finalCustomer = customer;
+            saveButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    finalCustomer.setFirstName(firstNameTextField.getText());
+                    finalCustomer.setSurname(surnameTextField.getText());
+                    finalCustomer.setPPS(pPSTextField.getText());
+                    finalCustomer.setDOB(dOBTextField.getText());
+                    finalCustomer.setCustomerID(customerIDTextField.getText());
+                    finalCustomer.setPassword(passwordTextField.getText());
+                    JOptionPane.showMessageDialog(null, "Changes Saved.");
+                }
+            });
+
+            JFrame finalF = f;
+            cancelButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    finalF.dispose();
+                    m.admin();
+                }
+            });
+        }
+    }
+	
+	public void getAtPosition(ArrayList<Customer> customerList, int position, JTextField firstNameTextField, JTextField surnameTextField, JTextField pPSTextField, JTextField dOBTextField, JTextField customerIDTextField, JTextField passwordTextField, String type) {
+        if (type.equals("next")) {
+            if (position == customerList.size() - 1) {
+            } else {
+                position = position + 1;
+                firstNameTextField.setText(customerList.get(position).getFirstName());
+                surnameTextField.setText(customerList.get(position).getSurname());
+                pPSTextField.setText(customerList.get(position).getPPS());
+                dOBTextField.setText(customerList.get(position).getDOB());
+                customerIDTextField.setText(customerList.get(position).getCustomerID());
+                passwordTextField.setText(customerList.get(position).getPassword());
+            }
+        } else if (type.equals("previous")) {
+            if (position < 1) {    
+            } else {
+                position = position - 1;
+                firstNameTextField.setText(customerList.get(position).getFirstName());
+                surnameTextField.setText(customerList.get(position).getSurname());
+                pPSTextField.setText(customerList.get(position).getPPS());
+                dOBTextField.setText(customerList.get(position).getDOB());
+                customerIDTextField.setText(customerList.get(position).getCustomerID());
+                passwordTextField.setText(customerList.get(position).getPassword());
+            }
+
+        } else if (type.equals("first")) {
+            if (position < 1) {
+            } else {
+                position = position - 1;
+                firstNameTextField.setText(customerList.get(position).getFirstName());
+                surnameTextField.setText(customerList.get(position).getSurname());
+                pPSTextField.setText(customerList.get(position).getPPS());
+                dOBTextField.setText(customerList.get(position).getDOB());
+                customerIDTextField.setText(customerList.get(position).getCustomerID());
+                passwordTextField.setText(customerList.get(position).getPassword());
+            }
+        } else if (type.equals("last")) {
+            position = customerList.size() - 1;
+            firstNameTextField.setText(customerList.get(position).getFirstName());
+            surnameTextField.setText(customerList.get(position).getSurname());
+            pPSTextField.setText(customerList.get(position).getPPS());
+            dOBTextField.setText(customerList.get(position).getDOB());
+            customerIDTextField.setText(customerList.get(position).getCustomerID());
+            passwordTextField.setText(customerList.get(position).getPassword());
+        }
+    }
+	
 	public String toString(){
 		return "PPS number = " + this.PPS + "\n" + "Surname = " + this.surname + "\n" + "First Name = " + this.firstName + "\n"
 				+ "Date of Birth = " + this.DOB + "\n" + "Customer ID = " + this.customerID;
